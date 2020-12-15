@@ -1,0 +1,5 @@
+sex love
+male male 1
+female female 1
+male female 0
+female male 0
