@@ -5,13 +5,6 @@ from functools import partial
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
-"""
-ui.pushButton.clicked.connect(partial(convert, ui))
-def convert(ui):
-    input = ui.lineEdit.text()
-    result = float(input) * 6.7
-    ui.lineEdit_2.setText(str(result))
-"""
 # 防止出错直接崩溃
 import cgitb
 cgitb.enable(format='text')
