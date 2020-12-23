@@ -71,11 +71,13 @@ def cal_entropy(data):
     return entropy
 
 
-def choose_divide_column(data):
+def choose_divide_column(data, columns):
     # 根据熵，计算最好的切分属性，返回属性序号
+    # columns为属性名，仅做输出用
     max_change_entropy = 0
     column = 0
     former_entropy = cal_entropy(data)
+    print("former_entropy:{}".format(former_entropy))
     for i in range(len(data[0]) - 1):  # 最后一列为分类
         value_set = set([d[i] for d in data])
         e = 0
@@ -84,9 +86,13 @@ def choose_divide_column(data):
             data_after = divide_set(data, i, value)
             e += cal_entropy(data_after) * (len(data_after) / len(data))
         change_entropy = former_entropy - e
+        print("cloumn:{} change_entropy:{}|".format(columns[i], change_entropy), end="")
         if change_entropy > max_change_entropy:
             max_change_entropy = change_entropy
             column = i
+    print()
+    print("choose:{}".format(columns[column]))
+    print()
     return column
 
 
@@ -114,7 +120,7 @@ def build_tree(data, columns):
     if len(data[0]) == 1:
         return decide_label(data)
     # 获取决策标签
-    column = choose_divide_column(data)
+    column = choose_divide_column(data, columns)
     column_name = columns[column]
     tree = {column_name: {}}
     del(columns[column])
