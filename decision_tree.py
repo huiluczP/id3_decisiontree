@@ -92,7 +92,6 @@ def choose_divide_column(data, columns):
             column = i
     print()
     print("choose:{}".format(columns[column]))
-    print()
     return column
 
 
@@ -124,8 +123,10 @@ def build_tree(data, columns):
     column_name = columns[column]
     tree = {column_name: {}}
     del(columns[column])
+    print(columns)
+    print()
     # 对每个值做一次决策
-    values = [d[column] for d in data]
+    values = set(d[column] for d in data)
     for v in values:
         columns_after = columns[:]
         data_after = divide_set(data, column, v)

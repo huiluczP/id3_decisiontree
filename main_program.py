@@ -44,6 +44,7 @@ def pushTrainTreeButton(ui):
     dt_gui.columns, data = dt.load_data(load_tree_file)
     train_columns = dt_gui.columns[:]
     dt_gui.tree = dt.build_tree(data, train_columns)
+    print(dt_gui.tree)
 
     # 显示决策树
     tree_content_list = []
